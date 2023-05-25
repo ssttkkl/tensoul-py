@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "tensoul"
+version = "0.1.0"
+description = ""
+authors = ["ssttkkl <huang.wen.long@hotmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "tensoul"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+ms-api = ">=0.10.226.post2"
+aiohttp = "^3.8.4"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
