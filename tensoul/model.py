@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import IntEnum
-from typing import NamedTuple, Union, Protocol, Optional, Sequence, runtime_checkable
+from typing import NamedTuple, Union, Protocol, Optional, Sequence
 
 from .cfg import cfg
 from .constants import TSUMOGIRI, RUNES, JPNAME
@@ -103,12 +103,9 @@ class PonSymbol(NamedTuple):
     feeder_relative: int
 
     def encode_tenhou(self) -> str:
-        s = ""
-        for i in range(3):
-            if i == self.feeder_relative:
-                s += "p"
-            s += str(self[i].encode_tenhou())
-        return s
+        t = [str(self.a.encode_tenhou()), str(self.b.encode_tenhou())]
+        t.insert(self.feeder_relative, f"p{self.tile.encode_tenhou()}")
+        return "".join(t)
 
 
 class DaiminkanSymbol(NamedTuple):
@@ -127,12 +124,9 @@ class DaiminkanSymbol(NamedTuple):
         if pos == 2:
             pos = 3
 
-        s = ""
-        for i in range(4):
-            if i == pos:
-                s += "m"
-            s += str(self[i].encode_tenhou())
-        return s
+        t = [str(self.a.encode_tenhou()), str(self.b.encode_tenhou()), str(self.c.encode_tenhou())]
+        t.insert(pos, f"m{self.tile.encode_tenhou()}")
+        return "".join(t)
 
 
 class AnkanSymbol(NamedTuple):
@@ -168,12 +162,9 @@ class KakanSymbol(NamedTuple):
         if pos == 2:
             pos = 3
 
-        s = ""
-        for i in range(4):
-            if i == pos:
-                s += "k"
-            s += str(self[i].encode_tenhou())
-        return s
+        t = [str(self.a.encode_tenhou()), str(self.b.encode_tenhou()), str(self.c.encode_tenhou())]
+        t.insert(pos, f"k{self.tile.encode_tenhou()}")
+        return "".join(t)
 
 
 class Round(NamedTuple):
