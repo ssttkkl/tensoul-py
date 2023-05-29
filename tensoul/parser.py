@@ -304,7 +304,7 @@ class MajsoulPaipuParser:
                 ura = [Tile.parse(t) for t in f.li_doras]
             agari.append(self._parse_hu_le(f))
 
-        self.cur.result = Agari(agari=agari, uras=ura)
+        self.cur.result = Agari(agari=agari, uras=ura, round=self.cur.round)
 
         self.kyokus.append(self.cur)
         self.cur = None

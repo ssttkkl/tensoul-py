@@ -255,8 +255,20 @@ class AgariPoint(NamedTuple):
 
 @dataclass
 class Yaku:
+    WIND = ['east', 'south', 'west', 'north']
+
     id: int
     val: int
+
+    def name(self, round: Round, seat: int) -> str:
+        if self.id == 10:
+            return f"{RUNES['jikaze'][JPNAME]} {RUNES[self.WIND[(seat + round.kyoku) % 4]][JPNAME]}"
+        if self.id == 11:
+            return f"{RUNES['bakaze'][JPNAME]} {RUNES[self.WIND[round.kyoku // 4]][JPNAME]}"
+        elif self.id == 18:
+            return RUNES['dabururiichi'][JPNAME]
+        else:
+            return cfg['fan']['fan']['map_'][str(self.id)]['name_jp']
 
 
 @dataclass
@@ -279,6 +291,7 @@ class SingleAgari:
 class Agari:
     agari: list[SingleAgari]
     uras: list[Tile]
+    round: Round
 
     def dump(self) -> Sequence:
         li = [RUNES["agari"][JPNAME]]
@@ -325,8 +338,7 @@ class Agari:
             res.append(point)
 
             for e in agari.yaku:
-                name = cfg['fan']['fan']['map_'][str(e.id)]['name_jp']
-
+                name = e.name(self.round, agari.seat)
                 if agari.yakuman:
                     res.append(f"{name}({RUNES['yakuman'][JPNAME]})")
                 else:

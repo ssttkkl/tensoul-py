@@ -10,6 +10,15 @@ DAISUUSHI = 50
 TSUMOGIRI = 60  # tenhou tsumogiri symbol
 
 RUNES = {
+    # wind
+    "east": ["東", "East ", "East "],
+    "south": ["南", "South ", "South "],
+    "west": ["西", "West ", "West "],
+    "north": ["北", "North ", "North "],
+    # yaku
+    "bakaze": ["場風", "? ", "? "],
+    "jikaze": ["自風", "? ", "? "],
+    "dabururiichi": ["両立直", "Double Riichi ", "Double Riichi "],
     # hand limits
     "mangan": ["満貫", "Mangan ", "Mangan "],
     "haneman": ["跳満", "Haneman ", "Haneman "],
