@@ -135,7 +135,7 @@ class AnkanSymbol(NamedTuple):
     def encode_tenhou(self) -> str:
         t = self.tile.encode_tenhou()
         if self.tile.num == 5 and self.tile.type != TileType.Z:
-            return f"{t}{t}{t}a{Tile(5, self.tile.type).encode_tenhou()}"
+            return f"{Tile(0, self.tile.type).encode_tenhou()}{t}{t}a{t}"
         else:
             return f"{t}{t}{t}a{t}"
 
