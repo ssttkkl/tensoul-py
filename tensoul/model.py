@@ -229,13 +229,14 @@ class AgariPoint(NamedTuple):
     def level(self) -> Optional[AgariPointLevel]:
         judgement = 0
         if self.ron == 0:
+            # 自摸
             if self.oya:
-                judgement = (self.tsumo * 9) >> 2
+                judgement = (self.tsumo * 3) // 1.5
             else:
                 judgement = self.tsumo * 2 + self.tsumo_oya
         else:
             if self.oya:
-                judgement = (self.ron * 3) >> 2
+                judgement = self.ron // 1.5
             else:
                 judgement = self.ron
 
