@@ -8,6 +8,7 @@ import aiohttp
 import ms.protocol_pb2 as pb
 from ms.base import MSRPCChannel
 from ms.rpc import Lobby
+from websockets.exceptions import ConnectionClosedError
 
 from .cfg import cfg
 from .constants import RUNES, JPNAME
@@ -30,8 +31,11 @@ class MajsoulPaipuDownloader:
         await self._connect()
 
     async def close(self):
-        if self.channel:
-            await self.channel.close()
+        try:
+            if self.channel:
+                await self.channel.close()
+        except ConnectionClosedError:
+            pass
 
     async def __aenter__(self):
         await self.start()
