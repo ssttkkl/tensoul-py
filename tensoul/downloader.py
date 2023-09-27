@@ -59,9 +59,12 @@ class MajsoulPaipuDownloader:
             async with session.get(url + "?service=ws-gateway&protocol=ws&ssl=true") as res:
                 servers = await res.json()
 
-                servers = servers["servers"]
-                server = random.choice(servers)
-                self.endpoint = "wss://{}/gateway".format(server)
+                if "servers" in servers:
+                    servers = servers["servers"]
+                    server = random.choice(servers)
+                    self.endpoint = "wss://{}/gateway".format(server)
+                else:
+                    raise RuntimeError("Cannot detect endpoint. Response: " + await res.text())
 
         self.channel = MSRPCChannel(self.endpoint)
         self.lobby = Lobby(self.channel)
