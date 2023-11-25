@@ -159,8 +159,6 @@ class KakanSymbol(NamedTuple):
 
     def encode_tenhou(self) -> str:
         pos = self.feeder_relative
-        if pos == 2:
-            pos = 3
 
         t = [str(self.a.encode_tenhou()), str(self.b.encode_tenhou()), str(self.c.encode_tenhou())]
         t.insert(pos, f"k{self.tile.encode_tenhou()}")
