@@ -4,7 +4,7 @@ Convert MahjongSoul log into tenhou.net/6 format. (Inspired by https://github.co
 
 ## Usage
 
-You need to have an account from CN server, because only accounts from CN server has the ability to login with username and password.
+You need to have an account from CN server, because only accounts from CN server have the ability to login with username and password.
 
 ```python
 import json
