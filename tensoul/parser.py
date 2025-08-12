@@ -206,14 +206,13 @@ class MajsoulPaipuParser:
         delta = []  # we need to compute the delta ourselves to handle double/triple ron
         points = None
 
-        # riichi stick points, -1 means already taken
+        # riichi stick points and base honba payment, -1 means already taken
         if self.nriichi != -1:
             rp = 1000 * (self.nriichi + self.cur.round.riichi_sticks)
+            hb = 100 * self.cur.round.honba
         else:
             rp = 0
-
-        # base honba payment
-        hb = 100 * self.cur.round.honba
+            hb = 0
 
         # sekinin barai logic
         pao = False
