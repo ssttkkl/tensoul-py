@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tensoul"
-version = "0.1.6"
+version = "0.1.8"
 description = ""
 authors = ["ssttkkl <huang.wen.long@hotmail.com>"]
 license = "MIT"
@@ -9,7 +9,7 @@ packages = [{include = "tensoul"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-ms-api = ">=0.10.226.post2"
+ms-api = ">=0.10.275"
 aiohttp = "^3.8.4"
 
 
