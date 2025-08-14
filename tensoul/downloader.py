@@ -181,15 +181,26 @@ class MajsoulPaipuDownloader:
         details.ParseFromString(wrapper.data)
 
         converter = MajsoulPaipuParser(tsumoloss_off=tsumoloss_off)
-        for act in details.actions:
-            if len(act.result) != 0:
+        if details.version < 210715 and len(details.records) > 0:
+            for rec in details.records:
                 round_record_wrapper = pb.Wrapper()
-                round_record_wrapper.ParseFromString(act.result)
+                round_record_wrapper.ParseFromString(rec)
 
                 log = getattr(pb, round_record_wrapper.name[len(".lq."):])()
                 log.ParseFromString(round_record_wrapper.data)
                 converter.feed(log)
 
                 res["log"] = [e.dump() for e in converter.getvalue()]
+        else:
+            for act in details.actions:
+                if len(act.result) != 0:
+                    round_record_wrapper = pb.Wrapper()
+                    round_record_wrapper.ParseFromString(act.result)
+
+                    log = getattr(pb, round_record_wrapper.name[len(".lq."):])()
+                    log.ParseFromString(round_record_wrapper.data)
+                    converter.feed(log)
+
+                    res["log"] = [e.dump() for e in converter.getvalue()]
 
         return res
