@@ -109,7 +109,7 @@ class MajsoulPaipuParser:
                 self.paowind = feeder
         elif 5 <= tile.num <= 7:
             self.nodrags[owner] += 1
-            if self.nodrags[owner] == 4:
+            if self.nodrags[owner] == 3:
                 self.paodrag = feeder
 
     def _handle_chi_peng_gang(self, log):
