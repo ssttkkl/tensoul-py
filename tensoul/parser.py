@@ -150,7 +150,7 @@ class MajsoulPaipuParser:
             # kakan
             # find pon and swap in new symbol
             for sy in self.cur.draws[log.seat]:
-                if isinstance(sy, PonSymbol) and (sy.tile == tile or sy.tile == tile.deaka()):
+                if isinstance(sy, PonSymbol) and (sy.tile.deaka() == tile.deaka()):
                     self.cur.discards[log.seat].append(KakanSymbol(sy.a, sy.b, sy.tile, tile, sy.feeder_relative))
                     self.nkan += 1
                     break
